@@ -48,3 +48,41 @@ Cubic runs on distributions based on Ubuntu 18.04.5 Bionic and above.
 [<img src="https://github.com/PJ-Singh-001/Cubic/blob/release/screenshots/Cubic%20Finish%20Page.png" width="256"/>](https://github.com/PJ-Singh-001/Cubic/wiki/Finish-Page)
 [<img src="https://github.com/PJ-Singh-001/Cubic/blob/release/screenshots/Cubic%20Finish%20Test%20Page.png" width="256"/>](https://github.com/PJ-Singh-001/Cubic/wiki/Finish-Test-Page)
 [<img src="https://github.com/PJ-Singh-001/Cubic/blob/release/screenshots/Cubic%20Emulator.png" width="256"/>](https://github.com/PJ-Singh-001/Cubic/wiki/Emulator)
+
+## Repository Notes
+
+This `release` branch is a documentation and asset repository for Cubic. It tracks:
+
+- `README.md` and GitHub issue templates.
+- `screenshots/*.png` images used by this README and the project wiki.
+- `qemu-system-x86_0.0_all.deb`, a small dummy Debian package.
+
+The Cubic application source is not built from this branch. Cubic is installed from the Launchpad PPA shown above, so there are no local build, lint, test, or package-manager commands to run from this checkout.
+
+### Dummy QEMU package
+
+`qemu-system-x86_0.0_all.deb` satisfies Cubic's `qemu-system-x86` dependency for installations that do not need the full QEMU package. It declares package `qemu-system-x86` at version `0.0` and contains only files under `/usr/share/doc/qemu-system-x86/`.
+
+Inspect the package without installing it:
+
+```
+dpkg-deb -I qemu-system-x86_0.0_all.deb
+dpkg-deb -c qemu-system-x86_0.0_all.deb
+```
+
+Verify the installed package state after installing it:
+
+```
+sudo dpkg -i qemu-system-x86_0.0_all.deb
+dpkg-query -W -f='${Package} ${Version} ${Status}\n' qemu-system-x86
+```
+
+Expected output:
+
+```
+qemu-system-x86 0.0 install ok installed
+```
+
+### Documentation workflow
+
+Keep changes to this branch focused on documentation, issue templates, screenshots, and the dummy Debian package. When documenting Cubic behavior, verify it against the installed Cubic package or the project wiki before changing this README, because this checkout does not contain the application code.

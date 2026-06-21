@@ -7,15 +7,6 @@ assignees: ''
 
 ---
 
----
-name: Question
-about: Create a question about how to do something using Cubic
-title: ''
-labels: question
-assignees: ''
-
----
-
 **Describe the question**
 
 A clear and concise description of what the question is.
